@@ -1,4 +1,33 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <div class="dnd-form-container">
+        {{ form_widget(form) }}
+        <button class="btn dnd-btn">{{ button_label|default('Créer') }}</button>
+    </div>
 {{ form_end(form) }}
+
+<style>
+    .dnd-btn {
+        background-color: #ff8c00;
+        color: white;
+        border: 2px solid #8b4513;
+        border-radius: 5px;
+        padding: 6px 15px;
+        font-size: 12px;
+        font-family: 'Cinzel', serif;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 0 10px rgba(255, 165, 0, 0.6);
+    }
+
+    .dnd-btn:hover {
+        background-color: #ff4500;
+        border-color: #8b4513;
+        box-shadow: 0 0 15px rgba(255, 69, 0, 0.8);
+        transform: scale(1.05);
+    }
+
+    .form-label {
+        font-weight: bold;
+        color: #f5deb3;
+    }
+</style>
