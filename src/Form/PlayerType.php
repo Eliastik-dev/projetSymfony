@@ -17,7 +17,7 @@ class PlayerType extends AbstractType
             ->add('pseudo')
             ->add('SelectedRace', EntityType::class, [
                 'class' => Race::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
             ])
         ;
     }
