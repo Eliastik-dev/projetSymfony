@@ -33,7 +33,8 @@ final class PlayerController extends AbstractController
             $entityManager->persist($player);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_player_index', [], Response::HTTP_SEE_OTHER);
+            // Redirige vers la liste des épisodes
+            return $this->redirectToRoute('app_episode_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('player/new.html.twig', [
