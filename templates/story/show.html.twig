@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Story{% endblock %}
+
+{% block body %}
+    <h1>Story</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ story.id }}</td>
+            </tr>
+            <tr>
+                <th>StoryDescription</th>
+                <td>{{ story.storyDescription }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_story_index') }}">back to list</a>
+
+    <a href="{{ path('app_story_edit', {'id': story.id}) }}">edit</a>
+
+    {{ include('story/_delete_form.html.twig') }}
+{% endblock %}
