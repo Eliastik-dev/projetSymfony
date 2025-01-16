@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Race index{% endblock %}
+
+{% block body %}
+    <h1>Race index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Strength</th>
+                <th>Intelligence</th>
+                <th>Wisdom</th>
+                <th>Agility</th>
+                <th>Hp</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for race in races %}
+            <tr>
+                <td>{{ race.id }}</td>
+                <td>{{ race.strength }}</td>
+                <td>{{ race.intelligence }}</td>
+                <td>{{ race.wisdom }}</td>
+                <td>{{ race.agility }}</td>
+                <td>{{ race.hp }}</td>
+                <td>
+                    <a href="{{ path('app_race_show', {'id': race.id}) }}">show</a>
+                    <a href="{{ path('app_race_edit', {'id': race.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_race_new') }}">Create new</a>
+{% endblock %}

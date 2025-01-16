@@ -32,6 +32,9 @@ class Race
     #[ORM\JoinColumn(nullable: false)]
     private ?Story $whatStory = null;
 
+    #[ORM\ManyToOne(inversedBy: 'playerStats')]
+    private ?LeaderBoard $leaderBoard = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +108,18 @@ class Race
     public function setWhatStory(Story $whatStory): static
     {
         $this->whatStory = $whatStory;
+
+        return $this;
+    }
+
+    public function getLeaderBoard(): ?LeaderBoard
+    {
+        return $this->leaderBoard;
+    }
+
+    public function setLeaderBoard(?LeaderBoard $leaderBoard): static
+    {
+        $this->leaderBoard = $leaderBoard;
 
         return $this;
     }

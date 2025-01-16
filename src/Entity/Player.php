@@ -20,6 +20,9 @@ class Player
     #[ORM\JoinColumn(nullable: false)]
     private ?Race $SelectedRace = null;
 
+    #[ORM\ManyToOne(inversedBy: 'playerPseudo')]
+    private ?LeaderBoard $leaderBoard = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +48,18 @@ class Player
     public function setSelectedRace(?Race $SelectedRace): static
     {
         $this->SelectedRace = $SelectedRace;
+
+        return $this;
+    }
+
+    public function getLeaderBoard(): ?LeaderBoard
+    {
+        return $this->leaderBoard;
+    }
+
+    public function setLeaderBoard(?LeaderBoard $leaderBoard): static
+    {
+        $this->leaderBoard = $leaderBoard;
 
         return $this;
     }
