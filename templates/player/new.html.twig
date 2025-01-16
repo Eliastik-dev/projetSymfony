@@ -3,9 +3,96 @@
 {% block title %}New Player{% endblock %}
 
 {% block body %}
-    <h1>Create new Player</h1>
+<div class="dnd-background">
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="text-center" style="max-width: 800px;">
+            <h1 class="mb-4" style="font-family: 'Cinzel', serif; text-shadow: 2px 2px #8b0000;">Create New Player</h1>
 
-    {{ include('player/_form.html.twig') }}
+            <div class="card" style="background-color: rgba(62, 41, 22, 0.9); border: 2px solid #8b4513;">
+                <div class="card-body">
+                    {{ include('player/_form.html.twig') }}
+                </div>
+            </div>
 
-    <a href="{{ path('app_player_index') }}">back to list</a>
+            <a href="{{ path('app_player_index') }}" class="back-btn btn btn-lg">Back to list</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .dnd-background {
+        background-image: url('{{ asset('assets/img/background-tavern.png') }}');
+        background-size: cover;
+        background-position: center;
+        min-height: 100vh;
+        padding: 20px;
+        color: #f5deb3;
+        font-family: 'Cinzel', serif;
+    }
+
+    .card {
+        background-color: rgba(62, 41, 22, 0.9);
+        border-radius: 10px;
+        color: #f5deb3;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.6);
+    }
+
+    .card-body {
+        padding: 30px;
+    }
+
+    .back-btn {
+        margin-top: 20px;
+        padding: 12px 30px;
+        background-color: #006400;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+    .back-btn:hover {
+        background-color: #228b22;
+    }
+
+    .btn {
+        font-family: 'Cinzel', serif;
+    }
+
+    h1 {
+        color: #f5deb3;
+        text-shadow: 2px 2px #8b0000;
+    }
+
+    .form-control {
+        background-color: #3e2916;
+        border: 1px solid #8b4513;
+        color: #f5deb3;
+    }
+
+    .form-control:focus {
+        background-color: #5c3a17;
+        border-color: #8b4513;
+        box-shadow: 0px 0px 5px rgba(255, 165, 0, 0.7);
+    }
+
+    .form-label {
+        font-weight: bold;
+        color: #f5deb3;
+    }
+
+    .btn-save {
+        background-color: #ff8c00;
+        color: white;
+        padding: 10px 20px;
+        border: 2px solid #8b4513;
+        border-radius: 5px;
+        font-family: 'Cinzel', serif;
+        font-size: 18px;
+    }
+
+    .btn-save:hover {
+        background-color: #ff4500;
+        border-color: #8b4513;
+    }
+</style>
 {% endblock %}
