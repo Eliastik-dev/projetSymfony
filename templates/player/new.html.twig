@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Player{% endblock %}
+{% block title %}Création d'aventurier{% endblock %}
 
 {% block body %}
 <div class="dnd-background">
-    <div class="container d-flex justify-content-center align-items-center min-vh-100">
-        <div class="text-center" style="max-width: 800px;">
-            <h1 class="mb-4" style="font-family: 'Cinzel', serif; text-shadow: 2px 2px #8b0000;">Create New Player</h1>
+    <div class="container d-flex justify-content-center align-items-start min-vh-100">
+        <div class="text-center mt-5" style="max-width: 800px;">
+            <h1 class="mb-4" style="font-family: 'Cinzel', serif; text-shadow: 2px 2px #8b0000;">Créer un nouvel aventurier</h1>
 
             <div class="card" style="background-color: rgba(62, 41, 22, 0.9); border: 2px solid #8b4513;">
                 <div class="card-body">
@@ -14,7 +14,7 @@
                 </div>
             </div>
 
-            <a href="{{ path('app_leaderboard_index') }}" class="back-btn btn btn-lg">Back to list</a>
+            <a href="{{ path('app_leaderboard_index') }}" class="back-btn btn btn-lg">Retour</a>
         </div>
     </div>
 </div>
