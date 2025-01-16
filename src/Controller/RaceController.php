@@ -23,24 +23,31 @@ final class RaceController extends AbstractController
     }
 
     #[Route('/new', name: 'app_race_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $race = new Race();
-        $form = $this->createForm(RaceType::class, $race);
-        $form->handleRequest($request);
+public function new(Request $request, EntityManagerInterface $entityManager): Response
+{
+    $race = new Race();
+    $form = $this->createForm(RaceType::class, $race);
+    $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($race);
-            $entityManager->flush();
+    if ($form->isSubmitted() && $form->isValid()) {
+        $entityManager->persist($race);
+        $entityManager->flush();
 
-            return $this->redirectToRoute('app_race_index', [], Response::HTTP_SEE_OTHER);
+        // Rediriger vers l'histoire associée
+        $story = $race->getWhatStory();
+        if ($story) {
+            return $this->redirectToRoute('app_story_show', ['id' => $story->getId()]);
         }
 
-        return $this->render('race/new.html.twig', [
-            'race' => $race,
-            'form' => $form,
-        ]);
+        return $this->redirectToRoute('app_race_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    return $this->render('race/new.html.twig', [
+        'race' => $race,
+        'form' => $form,
+    ]);
+}
+
 
     #[Route('/{id}', name: 'app_race_show', methods: ['GET'])]
     public function show(Race $race): Response
