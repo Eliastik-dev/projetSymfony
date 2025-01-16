@@ -2,17 +2,19 @@
 
 namespace App\Controller;
 
+use App\Repository\PlayerRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Annotation\Route;
 
-final class LeaderboardController extends AbstractController
+class LeaderboardController extends AbstractController
 {
-    #[Route('/leaderboard', name: 'app_leaderboard')]
-    public function index(): Response
+    #[Route('/leaderboard', name: 'app_leaderboard_index', methods: ['GET'])]
+    public function index(PlayerRepository $playerRepository): Response
     {
         return $this->render('leaderboard/index.html.twig', [
-            'controller_name' => 'LeaderboardController',
+            'players' => $playerRepository->findAll(),
         ]);
     }
 }
+

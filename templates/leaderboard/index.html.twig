@@ -1,20 +1,79 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello LeaderboardController!{% endblock %}
+{% block title %}Leaderboard{% endblock %}
 
 {% block body %}
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .leaderboard-table {
+        margin: 1em auto;
+        max-width: 800px;
+        width: 95%;
+        font: 16px/1.5 sans-serif;
+        border-collapse: collapse;
+    }
+    .leaderboard-table th, .leaderboard-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    .leaderboard-table th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+    }
+    .create-btn {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 8px 12px;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 4px;
+    }
+    .create-btn:hover {
+        background-color: #0056b3;
+    }
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<div>
+    <h1>Leaderboard</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/wamp64/www/symfony6/Projet-Licorne-main/src/Controller/LeaderboardController.php</code></li>
-        <li>Your template at <code>C:/wamp64/www/symfony6/Projet-Licorne-main/templates/leaderboard/index.html.twig</code></li>
-    </ul>
+    <table class="leaderboard-table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Pseudo</th>
+                <th>Force</th>
+                <th>Intelligence</th>
+                <th>Sagesse</th>
+                <th>Agilité</th>
+                <th>Points de vie</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for player in players %}
+                {% if player.race is not null %}
+                    <tr>
+                        <td>{{ player.id }}</td>
+                        <td>{{ player.pseudo }}</td>
+                        <td>{{ player.race.strength }}</td>
+                        <td>{{ player.race.intelligence }}</td>
+                        <td>{{ player.race.wisdom }}</td>
+                        <td>{{ player.race.agility }}</td>
+                        <td>{{ player.race.hp }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="7">Aucune statistique pour {{ player.pseudo }}</td>
+                    </tr>
+                {% endif %}
+            {% else %}
+                <tr>
+                    <td colspan="7">Aucun joueur trouvé</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_player_new') }}" class="create-btn">Créer un nouveau personnage</a>
 </div>
 {% endblock %}
