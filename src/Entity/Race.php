@@ -35,6 +35,9 @@ class Race
     #[ORM\ManyToOne(inversedBy: 'playerStats')]
     private ?LeaderBoard $leaderBoard = null;
 
+    #[ORM\Column(length: 100)]
+    private ?string $Name = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +123,18 @@ class Race
     public function setLeaderBoard(?LeaderBoard $leaderBoard): static
     {
         $this->leaderBoard = $leaderBoard;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->Name;
+    }
+
+    public function setName(string $Name): static
+    {
+        $this->Name = $Name;
 
         return $this;
     }
