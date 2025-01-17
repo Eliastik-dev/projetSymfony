@@ -1,26 +1,219 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Episode{% endblock %}
+{% block title %}Episode {{ episode.id }}{% endblock %}
 
 {% block body %}
-    <h1>Episode</h1>
+<div class="episode-container">
+    <div class="episode-content">
+        <h1>Les Chroniques d’Ærial</h1>
+        <p>{{ episode.episodeDescription }}</p>
+    </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ episode.id }}</td>
-            </tr>
-            <tr>
-                <th>EpisodeDescription</th>
-                <td>{{ episode.episodeDescription }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="choices">
+       {% for choice in episode.whatChoice %}
+       {% if choice.id == 101 %}
+                <a class="choice-button" href="{{ path('app_episode_choose', { id: 101 }) }}">
+                    {{ choice.choiceDescription }}
+                </a>
+            {% elseif choice.id == 102 %}
+                <a class="choice-button" href="{{ path('app_episode_choose', { id: 102 }) }}">
+                    {{ choice.choiceDescription }}
+                </a>
+            {% elseif choice.id == 103 %}
+                <a class="choice-button" href="{{ path('app_episode_choose', { id: 103 }) }}">
+                    {{ choice.choiceDescription }}
+                </a>
+            {% elseif choice.id == 104 %}
+                <a class="choice-button" href="{{ path('app_episode_choose', { id: 104 }) }}">
+                    {{ choice.choiceDescription }}
+                </a>
+            {% elseif choice.id == 105 %}
+                <a class="choice-button" href="{{ path('app_episode_choose', { id: 105 }) }}">
+                    {{ choice.choiceDescription }}
+                </a>
+            {% elseif choice.id == 106 %}
+                <a class="choice-button" href="{{ path('app_episode_choose', { id: 106 }) }}">
+                    {{ choice.choiceDescription }}
+                </a>
+        {% elseif choice.id == 201 %}
+                <a class="choice-button" href="{{ path('app_episode_choose', { id: 201 }) }}">
+                    {{ choice.choiceDescription }}
+                </a>
+            {% elseif choice.id == 202 %}
+                <a class="choice-button" href="{{ path('app_episode_choose', { id: 202 }) }}">
+                    {{ choice.choiceDescription }}
+                </a>
+            {% elseif choice.id == 203 %}
+                <a class="choice-button" href="{{ path('app_episode_choose', { id: 203 }) }}">
+                    {{ choice.choiceDescription }}
+                </a>
+            {% elseif choice.id == 204 %}
+                <a class="choice-button" href="{{ path('app_episode_choose', { id: 204 }) }}">
+                    {{ choice.choiceDescription }}
+                </a>
+            {% elseif choice.id == 205 %}
+                <a class="choice-button" href="{{ path('app_episode_choose', { id: 205 }) }}">
+                    {{ choice.choiceDescription }}
+                </a>
+            {% elseif choice.id == 206 %}
+                <a class="choice-button" href="{{ path('app_episode_choose', { id: 206 }) }}">
+                    {{ choice.choiceDescription }}
+                </a>
+            {% elseif choice.id == 301 %}
+                <a class="choice-button" href="{{ path('app_episode_choose', { id: 301 }) }}">
+                    {{ choice.choiceDescription }}
+                </a>
+            {% elseif choice.id == 302 %}
+                <a class="choice-button" href="{{ path('app_episode_choose', { id: 302 }) }}">
+                    {{ choice.choiceDescription }}
+                </a>
+            {% elseif choice.id == 303 %}
+                <a class="choice-button" href="{{ path('app_episode_choose', { id: 303 }) }}">
+                    {{ choice.choiceDescription }}
+                </a>
+            {% elseif choice.id == 304 %}
+                <a class="choice-button" href="{{ path('app_episode_choose', { id: 304 }) }}">
+                    {{ choice.choiceDescription }}
+                </a>
+            {% elseif choice.id == 305 %}
+                <a class="choice-button" href="{{ path('app_episode_choose', { id: 305 }) }}">
+                    {{ choice.choiceDescription }}
+                </a>
+            {% elseif choice.id == 306 %}
+                <a class="choice-button" href="{{ path('app_episode_choose', { id: 306 }) }}">
+                    {{ choice.choiceDescription }}
+                </a>
+            {% elseif choice.id == 401 %}
+                <a class="choice-button" href="{{ path('app_episode_choose', { id: 401 }) }}">
+                    {{ choice.choiceDescription }}
+                </a>
+            {% elseif choice.id == 402 %}
+                <a class="choice-button" href="{{ path('app_episode_choose', { id: 402 }) }}">
+                    {{ choice.choiceDescription }}
+                </a>
+            {% elseif choice.id == 403 %}
+                <a class="choice-button" href="{{ path('app_episode_choose', { id: 403 }) }}">
+                    {{ choice.choiceDescription }}
+                </a>
+            {% elseif choice.id == 404 %}
+                <a class="choice-button" href="{{ path('app_episode_choose', { id: 404 }) }}">
+                    {{ choice.choiceDescription }}
+                </a>
+            {% elseif choice.id == 405 %}
+                <a class="choice-button" href="{{ path('app_episode_choose', { id: 405 }) }}">
+                    {{ choice.choiceDescription }}
+                </a>
+            {% elseif choice.id == 406 %}
+                <a class="choice-button" href="{{ path('app_episode_choose', { id: 406 }) }}">
+                    {{ choice.choiceDescription }}
+                </a>
+            {% elseif choice.id >= 1000 and choice.id < 2000 %}
+                <a class="choice-button" href="{{ path('app_episode_choose', { id: 1111 }) }}">
+                    {{ choice.choiceDescription }}
+                </a>
+            {% elseif choice.id >= 2000 and choice.id < 3000 %}
+                <a class="choice-button" href="{{ path('app_episode_choose', { id: 2222 }) }}">
+                    {{ choice.choiceDescription }}
+                </a>
+            {% elseif choice.id >= 3000 and choice.id < 4000 %}
+                <a class="choice-button" href="{{ path('app_episode_choose', { id: 3111}) }}">
+                    {{ choice.choiceDescription }}
+                </a>
+            {% elseif choice.id >= 4000 and choice.id < 5000 %}
+                <a class="choice-button" href="{{ path('app_episode_choose', { id: 4321 }) }}">
+                    {{ choice.choiceDescription }}
+                </a>
+            {% else %}
+                <a class="choice-button" href="{{ path('app_episode_choose', { id: choice.id }) }}">
+                    {{ choice.choiceDescription }}
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
 
-    <a href="{{ path('app_episode_index') }}">back to list</a>
+<style>
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('{{ asset('images/dnd-theme.jpg') }}');   
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #f4f4f4;
+}
 
-    <a href="{{ path('app_episode_edit', {'id': episode.id}) }}">edit</a>
+.episode-container {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    max-width: 800px;
+    width: 90%;
+    margin: 20px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
 
-    {{ include('episode/_delete_form.html.twig') }}
+.episode-content h1 {
+    font-size: 2.5rem;
+    color: #e2b007;
+    margin-bottom: 10px;
+}
+
+.episode-content p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+}
+
+.choices {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 15px;
+    margin-top: 30px;
+    padding: 20px;
+}
+
+.choice-button {
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #ff6f61;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.choice-button:hover {
+    background-color: #e04e3a;
+    transform: scale(1.05);
+}
+
+.back-link {
+    margin-top: 20px;
+}
+
+.back-link a {
+    text-decoration: none;
+    color: #e2b007;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+}
+
+.back-link a:hover {
+    color: #ff6f61;
+    text-decoration: underline;
+}
+
+
+
+</style>
 {% endblock %}

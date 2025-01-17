@@ -16,6 +16,15 @@ class ChoiceRepository extends ServiceEntityRepository
         parent::__construct($registry, Choice::class);
     }
 
+    public function findByEpisode(int $episodeId): array
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.episode = :episodeId')
+            ->setParameter('episodeId', $episodeId)
+            ->orderBy('c.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
     //    /**
     //     * @return Choice[] Returns an array of Choice objects
     //     */

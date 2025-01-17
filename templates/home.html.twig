@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+<div class="dnd-background">
+    <div class="container text-center my-5" style="max-width: 800px;">
+        <h1 class="mb-4" style="font-family: 'Cinzel', serif; text-shadow: 2px 2px #8b0000;">Les Chroniques d’Ærial !</h1>
+
+        <div>
+            <a href="{{ path('app_player_new') }}" class="create-btn btn btn-primary btn-lg">Créer un nouveau personnage</a>
+        </div>
+
+        <div>
+            <a href="{{ path('app_leaderboard_index') }}" class="create-btn btn btn-primary btn-lg">Leaderboard</a>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    .dnd-background {
+        background-image: url('{{ asset('assets/img/background-tavern.png') }}');
+        background-size: cover;
+        background-position: center;
+        min-height: 100vh;
+        padding: 20px;
+        color: #f5deb3;
+        font-family: 'Cinzel', serif;
+    }
+
+    .create-btn {
+        margin-top: 20px;
+        font-size: 18px;
+        padding: 12px 30px;
+        background-color: #006400;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+    .create-btn:hover {
+        background-color: #228b22;
+    }
+</style>
+{% endblock %}

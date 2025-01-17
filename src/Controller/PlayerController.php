@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Player;
 use App\Form\PlayerType;
 use App\Repository\PlayerRepository;
+use App\Repository\EpisodeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,26 +23,41 @@ final class PlayerController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_player_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $player = new Player();
-        $form = $this->createForm(PlayerType::class, $player);
-        $form->handleRequest($request);
+   #[Route('/new', name: 'app_player_new', methods: ['GET', 'POST'])]
+public function new(Request $request, EntityManagerInterface $entityManager, EpisodeRepository $episodeRepository): Response
+{
+    $player = new Player();
+    $form = $this->createForm(PlayerType::class, $player);
+    $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($player);
-            $entityManager->flush();
+    if ($form->isSubmitted() && $form->isValid()) {
+        $entityManager->persist($player);
+        $entityManager->flush();
 
-            // Redirige vers la liste des épisodes
-            return $this->redirectToRoute('app_episode_index', [], Response::HTTP_SEE_OTHER);
+        $selectedRace = $player->getSelectedRace();
+        if (!$selectedRace) {
+            $this->addFlash('error', 'La race sélectionnée est invalide.');
+            return $this->redirectToRoute('app_episode_choose', ['id' => 1111]); // Redirection vers app_episode_choose
         }
 
-        return $this->render('player/new.html.twig', [
-            'player' => $player,
-            'form' => $form,
+        $story = $selectedRace->getWhatStory();
+        $episodes = $episodeRepository->findByStory($story);
+       
+        $this->addFlash('success', 'Le joueur a été créé avec succès !');
+
+        return $this->redirectToRoute('app_episode_show', [
+            'id' => $story->getId() ,
         ]);
     }
+
+    return $this->render('player/new.html.twig', [
+        'player' => $player,
+        'form' => $form,
+    ]);
+}
+
+
+
 
     #[Route('/{id}', name: 'app_player_show', methods: ['GET'])]
     public function show(Player $player): Response
@@ -72,7 +88,7 @@ final class PlayerController extends AbstractController
     #[Route('/{id}', name: 'app_player_delete', methods: ['POST'])]
     public function delete(Request $request, Player $player, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$player->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $player->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($player);
             $entityManager->flush();
         }
