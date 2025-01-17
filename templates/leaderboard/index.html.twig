@@ -11,8 +11,8 @@
             <table class="table table-hover table-bordered leaderboard-table">
                 <thead class="table-dark">
                     <tr>
-                        <th scope="col">Id</th>
                         <th scope="col">Pseudo</th>
+                        <th scope="col">Race</th>
                         <th scope="col">Force</th>
                         <th scope="col">Intelligence</th>
                         <th scope="col">Sagesse</th>
@@ -22,15 +22,15 @@
                 </thead>
                 <tbody>
                     {% for player in players %}
-                        {% if player.race is not null %}
+                        {% if player.SelectedRace is not null %}
                             <tr class="table-secondary">
-                                <td>{{ player.id }}</td>
                                 <td>{{ player.pseudo }}</td>
-                                <td>{{ player.race.strength }}</td>
-                                <td>{{ player.race.intelligence }}</td>
-                                <td>{{ player.race.wisdom }}</td>
-                                <td>{{ player.race.agility }}</td>
-                                <td>{{ player.race.hp }}</td>
+                                <td>{{ player.SelectedRace.name }}</td>
+                                <td>{{ player.SelectedRace.strength }}</td>
+                                <td>{{ player.SelectedRace.intelligence }}</td>
+                                <td>{{ player.SelectedRace.wisdom }}</td>
+                                <td>{{ player.SelectedRace.agility }}</td>
+                                <td>{{ player.SelectedRace.hp }}</td>
                             </tr>
                         {% else %}
                             <tr>

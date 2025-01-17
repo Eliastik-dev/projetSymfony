@@ -1,35 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Episode index{% endblock %}
+{% block title %}
+    {% if filtered %}
+        Épisodes liés à votre histoire
+    {% else %}
+        Liste des épisodes
+    {% endif %}
+{% endblock %}
 
 {% block body %}
-    <h1>Episode index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>EpisodeDescription</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for episode in episodes %}
-            <tr>
-                <td>{{ episode.id }}</td>
-                <td>{{ episode.episodeDescription }}</td>
-                <td>
-                    <a href="{{ path('app_episode_show', {'id': episode.id}) }}">show</a>
-                    <a href="{{ path('app_episode_edit', {'id': episode.id}) }}">edit</a>
-                </td>
-            </tr>
+    <h1>
+        {% if filtered %}
+            Épisodes liés à votre histoire
         {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            Liste des épisodes
+        {% endif %}
+    </h1>
 
-    <a href="{{ path('app_episode_new') }}">Create new</a>
+    <ul>
+        {% for episode in episodes %}
+            <li>
+                <a href="{{ path('app_episode_show', { id: episode.id }) }}">
+                    Episode {{ episode.id }} - {{ episode.episodeDescription }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}
